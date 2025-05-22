@@ -1,5 +1,4 @@
 #include <filesystem>
-#include <fstream>
 #include <iostream>
 
 using namespace std;
@@ -10,10 +9,18 @@ void createDirectory(const path& p, const string dirName);
 void transferFile(const path& src, const path& target);
 int main(){
 
-
    path p = current_path();
 
-   sortFile(p, ".txt", "text");
+   string ext[5] = {".txt", ".jpeg", ".jpg", ".png", ".pdf"};
+   string dirName[5] = {"text", "jpeg", "jpeg", "png", "pdf"};
+   int size = sizeof(dirName) / sizeof(dirName[0]);
+   
+   for (int i = 0; i < size; i++){
+      
+      cout << "SORTING " << dirName[i] << endl;
+      sortFile(p, ext[i], dirName[i]);
+   }
+      
    
    system("pause");
    return 0;
@@ -47,10 +54,10 @@ void transferFile(const path& src, const path& target){
 
    //transfers file to "target" directory
    try{
+      string fileName = src.filename().string();
       copy_file(src, target);
       remove(src);
-
-      cout << "File/s transferred to " << target.parent_path() << endl;
+      cout << fileName + " transferred to >> " << target.parent_path().string() << endl;
    } catch (filesystem_error const& ec){
       cout << ec.what() << endl;
    }
