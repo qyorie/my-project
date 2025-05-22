@@ -20,11 +20,12 @@ void sortFile(const path& p, const string& ext, const string& dirName){
 
    //Iterate through the directory
    for (auto const& dir_entry : directory_iterator{p}){
-      if (dir_entry.path().extension() == ext){
-         createDirectory(p, "text");
 
+      //checks for file extension name
+      if (dir_entry.path().extension() == ext){
+         createDirectory(p, dirName);
          try{
-            copy_file(dir_entry.path(), p/"text"/dir_entry.path().filename());
+            copy_file(dir_entry.path(), p/dirName/dir_entry.path().filename());
          } catch (filesystem_error const& ec){
             cout << ec.what() << endl;
          }
@@ -33,7 +34,6 @@ void sortFile(const path& p, const string& ext, const string& dirName){
 }
 
 void createDirectory(const path& p, const string dirName){
-   
    
    try{
       create_directory(p/dirName);
