@@ -7,6 +7,8 @@ using namespace std::filesystem;
 void sortFile(const path& p, const string& ext, const string& dirName);
 void createDirectory(const path& p, const string dirName);
 void transferFile(const path& src, const path& target);
+bool confirmation();
+
 int main(){
 
    path p = current_path();
@@ -14,16 +16,36 @@ int main(){
    string ext[5] = {".txt", ".jpeg", ".jpg", ".png", ".pdf"};
    string dirName[5] = {"text", "jpeg", "jpeg", "png", "pdf"};
    int size = sizeof(dirName) / sizeof(dirName[0]);
-   
-   for (int i = 0; i < size; i++){
-      
-      cout << "SORTING " << dirName[i] << endl;
-      sortFile(p, ext[i], dirName[i]);
+
+   if (confirmation()){
+      for (int i = 0; i < size; i++){
+         cout << "SORTING " << dirName[i] << endl;
+         sortFile(p, ext[i], dirName[i]);
+      }
    }
-      
    
    system("pause");
    return 0;
+}
+
+bool confirmation(){
+   
+
+   while(true){
+      char c;
+      cout << "Are you sure you want to sort your files? [Y/N]: ";
+      cin >> c;
+      cin.ignore();
+      if (c == 'y' || c == 'Y'){
+         return true;
+      }else if (c == 'n' || c == 'N'){
+         return false;
+      }else{
+         cout << "Invalid input!\n";
+      }
+
+   }
+   
 }
 
 void sortFile(const path& p, const string& ext, const string& dirName){
