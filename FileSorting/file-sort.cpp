@@ -77,8 +77,7 @@ void transferFile(const path& src, const path& target){
    //transfers file to "target" directory
    try{
       string fileName = src.filename().string();
-      copy_file(src, target);
-      remove(src);
+      rename(src, target);
       cout << fileName + " transferred to >> " << target.parent_path().string() << endl;
    } catch (filesystem_error const& ec){
       cout << ec.what() << endl;
