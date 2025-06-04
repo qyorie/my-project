@@ -1,5 +1,6 @@
 #include <filesystem>
 #include <iostream>
+#include <unistd.h>
 
 using namespace std;
 using namespace std::filesystem;
@@ -24,7 +25,11 @@ int main(){
       }
    }
    
-   system("pause");
+   for (int i = 3; i > 0; i--){
+      cout << "Program exiting in..... " << i << endl;
+      usleep(500000);
+   }
+
    return 0;
 }
 
