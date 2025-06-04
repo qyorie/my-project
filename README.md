@@ -1,6 +1,8 @@
 ### FileSorting 📁
 This program organizes files in a directory by file type. It automatically:
+
 1. Creates folders based on file extensions (e.g., .jpg, .pdf, .mp3).
 2. Moves files into their respective folders, helping keep your directory clean and organized.
+
 It's a simple and efficient way to declutter folders like Downloads, Desktop, or any location with mixed file types.
-Currently, it can only organize txt, jpeg, jpg, png, and pdf files.
+Currently, it can only organize **txt, jpeg, jpg, png, and pdf** files. (I should've named the folder FileOrganizer)
